@@ -9,40 +9,46 @@ let counter = 0;
 let numberOfStars = 3;
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 
-let newArray = shuffle(arrayOfCards);
-for (let i = 0; i < newArray.length; i++) {
-    let html = '<li class="card"><i class="'
-    switch(newArray[i]) {
-        case 'gem':
-            html += 'far fa-gem';
-            break;
-        case 'plane':
-            html += 'far fa-paper-plane';
-            break;
-        case 'anchor':
-            html += 'fas fa-anchor';
-            break;
-        case 'bolt':
-            html += 'fas fa-bolt';
-            break;
-        case 'cube':
-            html += 'fas fa-cube';
-            break;
-        case 'leaf':
-            html += 'fas fa-leaf';
-            break;
-        case 'bicycle':
-            html += 'fas fa-bicycle';
-            break;
-        case 'bomb':
-            html += 'fas fa-bomb';
-            break;
-    }
-    html += '"></i></li>';
 
-    const deck = document.querySelector('.deck');
-    deck.insertAdjacentHTML('beforeend', html);
+let newArray = shuffle(arrayOfCards);
+populateDeck(newArray);
+
+function populateDeck(array) {
+    for (let i = 0; i < array.length; i++) {
+        let html = '<li class="card"><i class="'
+        switch (array[i]) {
+            case 'gem':
+                html += 'far fa-gem';
+                break;
+            case 'plane':
+                html += 'far fa-paper-plane';
+                break;
+            case 'anchor':
+                html += 'fas fa-anchor';
+                break;
+            case 'bolt':
+                html += 'fas fa-bolt';
+                break;
+            case 'cube':
+                html += 'fas fa-cube';
+                break;
+            case 'leaf':
+                html += 'fas fa-leaf';
+                break;
+            case 'bicycle':
+                html += 'fas fa-bicycle';
+                break;
+            case 'bomb':
+                html += 'fas fa-bomb';
+                break;
+        }
+        html += '"></i></li>';
+
+        const deck = document.querySelector('.deck');
+        deck.insertAdjacentHTML('beforeend', html);
+    }
 }
+
 
 /*
  * Display the cards on the page
@@ -176,3 +182,42 @@ function endGame() {
     document.querySelector('.deck').style.display = "none";
     document.querySelector('.win').style.display = "flex";
 }
+
+function newGame(shuffleCards) {
+    counter = 0;
+    pairs = 0;
+    numberOfStars = 3;
+    cardsSelected = [];
+
+    document.querySelector('.deck').innerHTML = "";
+
+    if (shuffleCards) {
+        let array = shuffle(arrayOfCards);
+        populateDeck(array);
+    } else {
+        document.querySelector('.deck').innerHTML = "";
+        populateDeck(newArray);
+    }
+    
+    //Update moves to 0
+    document.querySelector('.moves').textContent = counter;
+
+    //show 3 stars
+    const parent = document.querySelector('.stars');
+
+    parent.firstElementChild.innerHTML = '<li><i class="fas fa-star"></i></li>';
+    parent.firstElementChild.nextElementSibling.innerHTML = '<li><i class="fas fa-star"></i></li>';
+    parent.lastElementChild.innerHTML = '<li><i class="fas fa-star"></i></li>';
+
+    //show correct screen
+    document.querySelector('.deck').style.display = "flex";
+    document.querySelector('.win').style.display = "none";
+}
+
+document.querySelector('.newGame').addEventListener('click', function() {
+    newGame(true);
+});
+
+document.querySelector('.sameGame').addEventListener('click', function() {
+    newGame(false);
+});

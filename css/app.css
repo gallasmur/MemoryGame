@@ -135,6 +135,7 @@ h1 {
     left: 1000px;
     background-color: wheat;
     font-weight: bold;
+    padding: 10px 20px;
 }
 
 .restart .fa-play:hover + .hoverNew {
