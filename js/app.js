@@ -2,6 +2,7 @@
  * Create a list that holds all of your cards
  */
 let cardsSelected = [];
+let counter = 0;
 
 /*
  * Display the cards on the page
@@ -40,12 +41,16 @@ function shuffle(array) {
 const allCards = document.querySelectorAll('.card');
 
 document.querySelector('.deck').addEventListener('click', function(event) {
-    if (event.target && event.target.nodeName == 'LI') {
+    const card = event.target;
+    if (card && card.nodeName == 'LI') {
         //Comprobar que no está matcheada o abierta para continuar, si lo esta no hacer nada
         //Tambien comprabar que no hay ya 2 cartas seleccionadas
+        if (!card.classList.contains('open') && !card.classList.contains('match') && cardsSelected.length < 2) {
+            showCard(card);
+            checkForMatch(card);
 
-        showCard(event.target);
-        checkForMatch(event.target);
+
+        }
     }
 });
 
@@ -78,6 +83,8 @@ function matchCards(cards) {
 function checkForMatch(card) {
     cardsSelected.push(card);
     if (cardsSelected.length === 2) {
+        incrementCounter();
+        
         if (cardsSelected[0].innerHTML === cardsSelected[1].innerHTML) {
             matchCards(cardsSelected);
             cardsSelected = [];
@@ -86,7 +93,12 @@ function checkForMatch(card) {
                 hideCard(cardsSelected[0]);
                 hideCard(cardsSelected[1]);
                 cardsSelected = [];
-            }, 1000);
+            }, 500);
         }
     }
+}
+
+function incrementCounter() {
+    counter++;
+    document.querySelector('.moves').textContent = counter;
 }
