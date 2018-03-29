@@ -41,7 +41,14 @@ const allCards = document.querySelectorAll('.card');
 
 document.querySelector('.deck').addEventListener('click', function(event) {
     if (event.target && event.target.nodeName == 'LI') {
-        console.log(event.target);
+        showCard(event.target);
     }
-})
+});
+
+function showCard(card) {
+    const listOfClasses = card.classList;
+    listOfClasses.add('open');
+    listOfClasses.add('show');
+    console.log(listOfClasses);
+}
 
