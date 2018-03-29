@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cardsSelected = [];
 
 /*
  * Display the cards on the page
@@ -41,7 +41,11 @@ const allCards = document.querySelectorAll('.card');
 
 document.querySelector('.deck').addEventListener('click', function(event) {
     if (event.target && event.target.nodeName == 'LI') {
+        //Comprobar que no está matcheada o abierta para continuar, si lo esta no hacer nada
+        //Tambien comprabar que no hay ya 2 cartas seleccionadas
+
         showCard(event.target);
+        checkForMatch(event.target);
     }
 });
 
@@ -52,3 +56,37 @@ function showCard(card) {
     console.log(listOfClasses);
 }
 
+function hideCard(card) {
+    const listOfClasses = card.classList;
+    listOfClasses.remove('open');
+    listOfClasses.remove('show');
+    console.log(listOfClasses);
+}
+
+function matchCards(cards) {
+    let listOfClasses = cards[0].classList;
+    listOfClasses.remove('open');
+    listOfClasses.remove('show');
+    listOfClasses.add('match');
+
+    listOfClasses = cards[1].classList;
+    listOfClasses.remove('open');
+    listOfClasses.remove('show');
+    listOfClasses.add('match');
+}
+
+function checkForMatch(card) {
+    cardsSelected.push(card);
+    if (cardsSelected.length === 2) {
+        if (cardsSelected[0].innerHTML === cardsSelected[1].innerHTML) {
+            matchCards(cardsSelected);
+            cardsSelected = [];
+        } else {
+            window.setTimeout(function () {
+                hideCard(cardsSelected[0]);
+                hideCard(cardsSelected[1]);
+                cardsSelected = [];
+            }, 1000);
+        }
+    }
+}
