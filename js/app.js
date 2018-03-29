@@ -117,6 +117,7 @@ function hideCard(card) {
     const listOfClasses = card.classList;
     listOfClasses.remove('open');
     listOfClasses.remove('show');
+    listOfClasses.remove('red');
     console.log(listOfClasses);
 }
 
@@ -148,6 +149,8 @@ function checkForMatch(card) {
                 hideCard(cardsSelected[1]);
                 cardsSelected = [];
             }, 500);
+            cardsSelected[0].classList.add('red');
+            cardsSelected[1].classList.add('red');
 
             return false;
         }

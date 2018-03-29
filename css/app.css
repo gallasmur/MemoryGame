@@ -81,6 +81,10 @@ h1 {
     font-size: 33px;
 }
 
+.red {
+    background: red !important;
+}
+
 /*
  * Styles for the Score Panel
  */
