@@ -6,6 +6,7 @@ const numberOfPairsToWin = 8;
 let pairs = 0;
 let cardsSelected = [];
 let counter = 0;
+let numberOfStars = 3;
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 
 let newArray = shuffle(arrayOfCards);
@@ -89,8 +90,8 @@ document.querySelector('.deck').addEventListener('click', function(event) {
             if (checkForMatch(card)) {
                 pairs ++;
                 if (pairs === numberOfPairsToWin) {
-                    document.querySelector('.deck').style.display = "none";
-                    document.querySelector('.win').style.display = "block";
+                    endGame();
+
                 }
             }
 
@@ -150,4 +151,28 @@ function checkForMatch(card) {
 function incrementCounter() {
     counter++;
     document.querySelector('.moves').textContent = counter;
+    
+    //Update stars if necessary
+    if (counter === 11) {
+        document.querySelector('.stars').lastElementChild.innerHTML = '<li><i class="far fa-star"></i></li>';
+        numberOfStars = 2;
+    }
+
+    if (counter === 21) {
+        document.querySelector('.stars').firstElementChild.nextElementSibling.innerHTML = '<li><i class="far fa-star"></i></li>';
+        numberOfStars = 1;
+    }
+
+    if (counter === 31) {
+        document.querySelector('.stars').firstElementChild.innerHTML = '<li><i class="far fa-star"></i></li>';
+        numberOfStars = 0;
+    }
+}
+
+function endGame() {
+    document.querySelector('.move').textContent = counter;
+    document.querySelector('.star').textContent = numberOfStars;
+
+    document.querySelector('.deck').style.display = "none";
+    document.querySelector('.win').style.display = "block";
 }
