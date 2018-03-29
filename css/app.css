@@ -132,7 +132,7 @@ h1 {
     display: none;
     position: absolute;
     top: 110px;
-    left: 1000px;
+    left: 950px;
     background-color: wheat;
     font-weight: bold;
     padding: 10px 20px;
@@ -148,4 +148,18 @@ h1 {
 
 .hoverNew:hover, .hoverSame:hover {
     display: block;
+}
+
+.buttonNewGame {
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(160deg, #9b0a38 0%, #d88fa6 100%);
+    font-size: 24px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttonNewGame:hover {
+    color: #000;
 }

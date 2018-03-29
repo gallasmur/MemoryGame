@@ -221,3 +221,12 @@ document.querySelector('.newGame').addEventListener('click', function() {
 document.querySelector('.sameGame').addEventListener('click', function() {
     newGame(false);
 });
+
+document.querySelector('.buttonNewGame').addEventListener('click', function() {
+    newGame(true);
+});
+
+document.querySelector('.sameAgain').addEventListener('click', function(event) {
+    event.preventDefault();
+    newGame(false);
+})
