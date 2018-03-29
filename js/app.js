@@ -1,6 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
+const numberOfPairsToWin = 8;
+
+let pairs = 0;
 let cardsSelected = [];
 let counter = 0;
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
@@ -35,7 +38,7 @@ for (let i = 0; i < newArray.length; i++) {
             break;
     }
     html += '"></i></li>';
-    
+
     const deck = document.querySelector('.deck');
     deck.insertAdjacentHTML('beforeend', html);
 }
@@ -83,7 +86,13 @@ document.querySelector('.deck').addEventListener('click', function(event) {
         //Tambien comprabar que no hay ya 2 cartas seleccionadas
         if (!card.classList.contains('open') && !card.classList.contains('match') && cardsSelected.length < 2) {
             showCard(card);
-            checkForMatch(card);
+            if (checkForMatch(card)) {
+                pairs ++;
+                if (pairs === numberOfPairsToWin) {
+                    document.querySelector('.deck').style.display = "none";
+                    document.querySelector('.win').style.display = "block";
+                }
+            }
 
 
         }
@@ -124,12 +133,16 @@ function checkForMatch(card) {
         if (cardsSelected[0].innerHTML === cardsSelected[1].innerHTML) {
             matchCards(cardsSelected);
             cardsSelected = [];
+
+            return true;
         } else {
             window.setTimeout(function () {
                 hideCard(cardsSelected[0]);
                 hideCard(cardsSelected[1]);
                 cardsSelected = [];
             }, 500);
+
+            return false;
         }
     }
 }
