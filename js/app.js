@@ -174,5 +174,5 @@ function endGame() {
     document.querySelector('.star').textContent = numberOfStars;
 
     document.querySelector('.deck').style.display = "none";
-    document.querySelector('.win').style.display = "block";
+    document.querySelector('.win').style.display = "flex";
 }

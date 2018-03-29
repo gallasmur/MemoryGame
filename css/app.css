@@ -110,4 +110,16 @@ h1 {
 
 .win {
     display: none;
+    margin-top: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.win .fas {
+    color: green;
+}
+
+.win h1 {
+    color: red;
 }
