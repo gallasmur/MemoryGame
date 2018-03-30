@@ -122,6 +122,7 @@ function hideCard(card) {
     listOfClasses.remove('open');
     listOfClasses.remove('show');
     listOfClasses.remove('red');
+    listOfClasses.remove('swing');
     console.log(listOfClasses);
 }
 
@@ -129,15 +130,21 @@ function hideCard(card) {
 Take a list of two matched cards and lock them in matched state
 */
 function matchCards(cards) {
-    let listOfClasses = cards[0].classList;
-    listOfClasses.remove('open');
-    listOfClasses.remove('show');
-    listOfClasses.add('match');
+    window.setTimeout(function () {
+        listOfClasses = cards[0].classList;
+        listOfClasses.remove('open');
+        listOfClasses.remove('show');
+        listOfClasses.remove('swingY');
+        listOfClasses.add('match');
 
-    listOfClasses = cards[1].classList;
-    listOfClasses.remove('open');
-    listOfClasses.remove('show');
-    listOfClasses.add('match');
+        listOfClasses = cards[1].classList;
+        listOfClasses.remove('open');
+        listOfClasses.remove('show');
+        listOfClasses.remove('swingY');
+        listOfClasses.add('match');
+    }, 1000);
+    cards[0].classList.add('swingY');
+    cards[1].classList.add('swingY');
 }
 
 /*
@@ -164,6 +171,8 @@ function checkForMatch(card) {
             }, 500);
             cardsSelected[0].classList.add('red');
             cardsSelected[1].classList.add('red');
+            cardsSelected[0].classList.add('swing');
+            cardsSelected[1].classList.add('swing');
 
             return false;
         }
