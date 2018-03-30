@@ -337,3 +337,9 @@ h1 {
         -webkit-animation-iteration-count: 1;
         animation-iteration-count: 1;
 }
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}

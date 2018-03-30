@@ -207,17 +207,23 @@ function incrementCounter() {
 Update info of the game and show the win screen
 */
 function endGame() {
-    window.clearInterval(myTimer);
-    document.querySelector('.move').textContent = counter;
-    document.querySelector('.star').textContent = numberOfStars;
+    window.setTimeout(function () {
+        window.clearInterval(myTimer);
+        document.querySelector('.move').textContent = counter;
+        document.querySelector('.star').textContent = numberOfStars;
 
-    const minutes = getFormattedMinutes();
+        const minutes = getFormattedMinutes();
 
-    document.querySelector('.minutesWin').innerHTML = minutes;
-    document.querySelector('.secondsWin').innerHTML = getFormattedSeconds(minutes);
+        document.querySelector('.minutesWin').innerHTML = minutes;
+        document.querySelector('.secondsWin').innerHTML = getFormattedSeconds(minutes);
 
-    document.querySelector('.deck').style.display = "none";
-    document.querySelector('.win').style.display = "flex";
+        document.querySelector('.deck').style.display = "none";
+        document.querySelector('.win').style.display = "flex";
+    }, 2000);
+    
+    for (let i = 0; i < allCards.length; i++) {
+        allCards[i].classList.add('hidden');
+    }
 }
 
 /*
