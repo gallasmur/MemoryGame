@@ -8,10 +8,12 @@ let cardsSelected = [];
 let counter = 0;
 let numberOfStars = 3;
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
+let seconds = 0;
+let myTimer;
 
-
-let newArray = shuffle(arrayOfCards);
-populateDeck(newArray);
+// let newArray = shuffle(arrayOfCards);
+// populateDeck(newArray);
+newGame(true);
 
 function populateDeck(array) {
     for (let i = 0; i < array.length; i++) {
@@ -179,8 +181,14 @@ function incrementCounter() {
 }
 
 function endGame() {
+    window.clearInterval(myTimer);
     document.querySelector('.move').textContent = counter;
     document.querySelector('.star').textContent = numberOfStars;
+
+    const minutes = getFormattedMinutes();
+
+    document.querySelector('.minutesWin').innerHTML = minutes;
+    document.querySelector('.secondsWin').innerHTML = getFormattedSeconds(minutes);
 
     document.querySelector('.deck').style.display = "none";
     document.querySelector('.win').style.display = "flex";
@@ -191,6 +199,10 @@ function newGame(shuffleCards) {
     pairs = 0;
     numberOfStars = 3;
     cardsSelected = [];
+    seconds = 0;
+    window.clearInterval(myTimer);
+
+    myTimer = setInterval(timer, 1000);
 
     document.querySelector('.deck').innerHTML = "";
 
@@ -232,4 +244,25 @@ document.querySelector('.buttonNewGame').addEventListener('click', function() {
 document.querySelector('.sameAgain').addEventListener('click', function(event) {
     event.preventDefault();
     newGame(false);
-})
+});
+
+function timer() {
+    const minutes = getFormattedMinutes();
+
+    document.querySelector('.minutes').innerHTML = minutes;
+    document.querySelector('.seconds').innerHTML = getFormattedSeconds(minutes);
+
+    seconds++;
+}
+
+function getFormattedMinutes() {
+    let minutes = Math.floor(seconds / 60);
+
+    return ("0" + minutes).slice(-2);
+}
+
+function getFormattedSeconds(minutes) {
+    let secundero = seconds - minutes * 60;
+
+    return ("0" + secundero).slice(-2);
+}

@@ -91,8 +91,12 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 700px;
     margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .score-panel .stars {
@@ -177,5 +181,9 @@ h1 {
     .deck .card {
         width: 100px;
         height: 100px;
+    }
+
+    .score-panel {
+        width: 500px;
     }
 }
