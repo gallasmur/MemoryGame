@@ -10,6 +10,7 @@ let numberOfStars = 3;      //rating of the player, dependant of moves
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 let seconds = 0;            //total seconds of the actual game
 let myTimer;                //variable that hold the timer
+let firstCard;              //Keep track of the cards to start the timer
 
 //To start call the newGame function to initialize all with parameter of shuffle = true
 newGame(true);
@@ -84,6 +85,12 @@ const allCards = document.querySelectorAll('.card');
 
 //Add Event Listener to the cards indeck
 document.querySelector('.deck').addEventListener('click', function(event) {
+    //Check if first card clicked to start the timer
+    if (firstCard) {
+        myTimer = setInterval(timer, 1000);
+
+        firstCard = false;
+    }
     const card = event.target;
     if (card && card.nodeName == 'LI') {
         //Check if the card is not matched, open of if there are 2 cards already selected
@@ -228,7 +235,7 @@ function endGame() {
 
 /*
 Takes shuffleCards as a parameter, if true we shuffled the cards and if false we play the same deck
-Restart all of the stats for a new game and set the timer
+Restart all of the stats for a new game
 */
 function newGame(shuffleCards) {
     counter = 0;
@@ -236,9 +243,8 @@ function newGame(shuffleCards) {
     numberOfStars = 3;
     cardsSelected = [];
     seconds = 0;
+    firstCard = true;
     window.clearInterval(myTimer);
-
-    myTimer = setInterval(timer, 1000);
 
     document.querySelector('.deck').innerHTML = "";
 
