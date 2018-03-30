@@ -10,10 +10,11 @@ let numberOfStars = 3;      //rating of the player, dependant of moves
 let arrayOfCards = ['gem', 'gem', 'plane', 'plane', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 let seconds = 0;            //total seconds of the actual game
 let myTimer;                //variable that hold the timer
-let firstCard;              //Keep track of the cards to start the timer
+let firstCard = true;              //Keep track of the cards to start the timer
 
-//To start call the newGame function to initialize all with parameter of shuffle = true
-newGame(true);
+//To start shuffle and populate the deck
+let newArray = shuffle(arrayOfCards);
+populateDeck(newArray);
 
 /**
 * Takes an array of cards and populate the html with them
