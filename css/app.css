@@ -167,3 +167,15 @@ h1 {
 .buttonNewGame:hover {
     color: #000;
 }
+
+@media screen and (max-width: 700px) {
+    .deck {
+        width: 500px;
+        min-height: 520px;
+    }
+
+    .deck .card {
+        width: 100px;
+        height: 100px;
+    }
+}
