@@ -1,4 +1,4 @@
-/*
+/**
  * Create a list that holds all of your cards
  */
 const numberOfPairsToWin = 8;
@@ -15,8 +15,8 @@ let firstCard;              //Keep track of the cards to start the timer
 //To start call the newGame function to initialize all with parameter of shuffle = true
 newGame(true);
 
-/*
-Takes an array of cards and populate the html with them
+/**
+* Takes an array of cards and populate the html with them
 */
 function populateDeck(array) {
     for (let i = 0; i < array.length; i++) {
@@ -70,7 +70,7 @@ function shuffle(array) {
 }
 
 
-/*
+/**
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
@@ -111,8 +111,8 @@ document.querySelector('.deck').addEventListener('click', function(event) {
     }
 });
 
-/*
-Take a card as a parameter and display it to the user
+/**
+* Take a card as a parameter and display it to the user
 */
 function showCard(card) {
     const listOfClasses = card.classList;
@@ -121,8 +121,8 @@ function showCard(card) {
     console.log(listOfClasses);
 }
 
-/*
-Take a card as a parameter and hide it to the user
+/**
+* Take a card as a parameter and hide it to the user
 */
 function hideCard(card) {
     const listOfClasses = card.classList;
@@ -133,8 +133,8 @@ function hideCard(card) {
     console.log(listOfClasses);
 }
 
-/*
-Take a list of two matched cards and lock them in matched state
+/**
+* Take a list of two matched cards and lock them in matched state
 */
 function matchCards(cards) {
     window.setTimeout(function () {
@@ -154,9 +154,9 @@ function matchCards(cards) {
     cards[1].classList.add('swingY');
 }
 
-/*
-Takes a card as a parameter and push it to cardsSelected array
-If we have already two cards in the array check for match.
+/**
+* Takes a card as a parameter and push it to cardsSelected array
+* If we have already two cards in the array check for match.
 */
 function checkForMatch(card) {
     cardsSelected.push(card);
@@ -186,8 +186,8 @@ function checkForMatch(card) {
     }
 }
 
-/*
-Increment counter of moves and update the UI for moves and stars
+/**
+* Increment counter of moves and update the UI for moves and stars
 */
 function incrementCounter() {
     counter++;
@@ -210,8 +210,8 @@ function incrementCounter() {
     }
 }
 
-/*
-Update info of the game and show the win screen
+/**
+* Update info of the game and show the win screen
 */
 function endGame() {
     window.setTimeout(function () {
@@ -233,9 +233,9 @@ function endGame() {
     }
 }
 
-/*
-Takes shuffleCards as a parameter, if true we shuffled the cards and if false we play the same deck
-Restart all of the stats for a new game
+/**
+* Takes shuffleCards as a parameter, if true we shuffled the cards and if false we play the same deck
+* Restart all of the stats for a new game
 */
 function newGame(shuffleCards) {
     counter = 0;
@@ -290,8 +290,8 @@ document.querySelector('.sameAgain').addEventListener('click', function(event) {
     newGame(false);
 });
 
-/*
-Function that is call every 1 second and updates the UI
+/**
+* Function that is call every 1 second and updates the UI
 */
 function timer() {
     const minutes = getFormattedMinutes();
@@ -302,8 +302,8 @@ function timer() {
     seconds++;
 }
 
-/*
-Return a string of two digit minutes
+/**
+* Return a string of two digit minutes
 */
 function getFormattedMinutes() {
     let minutes = Math.floor(seconds / 60);
@@ -311,8 +311,8 @@ function getFormattedMinutes() {
     return ("0" + minutes).slice(-2);
 }
 
-/*
-Return a string of two digit seconds
+/**
+* Return a string of two digit seconds
 */
 function getFormattedSeconds(minutes) {
     let secundero = seconds - minutes * 60;
